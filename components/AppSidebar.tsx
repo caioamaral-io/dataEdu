@@ -2,12 +2,14 @@ import { TrendingUp, Inbox, Calendar } from "lucide-react"
 import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarGroupLabel, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarSeparator } from "@/components/ui/sidebar"
 import Link from "next/link";
 import Image from "next/image";
+import Github from "@/components/icons/Github";
+import Overview from "@/components/icons/Overview";
 
 const items = [
   {
     title: "Overview",
     url: "#",
-    icon: TrendingUp,
+    icon: Overview,
   },
   {
     title: "Website",
@@ -37,7 +39,7 @@ const AppSidebar = () => {
                 </SidebarMenuItem>
             </SidebarMenu>
         </SidebarHeader>
-        <SidebarSeparator />
+        {/* <SidebarSeparator /> */}
         <SidebarContent>
           <SidebarGroup>
             <SidebarGroupContent>
@@ -58,6 +60,16 @@ const AppSidebar = () => {
         </SidebarContent>
         <SidebarFooter>
             {/* Colocar o Icon do Github */}
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link href="https://github.com/caioamaral-io/Dashboard" target="_blank" rel="noopener noreferrer">
+                    <Github />
+                    <span className="text-base font-regular">GitHub</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
         </SidebarFooter>
       </Sidebar>
     );
