@@ -1,21 +1,21 @@
-import { Home, Inbox, Calendar, Search, Settings } from "lucide-react"
+import { TrendingUp, Inbox, Calendar } from "lucide-react"
 import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarGroupLabel, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarSeparator } from "@/components/ui/sidebar"
 import Link from "next/link";
 import Image from "next/image";
 
 const items = [
   {
-    title: "Home",
+    title: "Overview",
     url: "#",
-    icon: Home,
+    icon: TrendingUp,
   },
   {
-    title: "Inbox",
+    title: "Website",
     url: "#",
     icon: Inbox,
   },
   {
-    title: "Calendar",
+    title: "Pitch",
     url: "#",
     icon: Calendar,
   },

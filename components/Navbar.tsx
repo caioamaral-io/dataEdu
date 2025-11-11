@@ -41,10 +41,6 @@ const Navbar = () => {
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
-                <Avatar>
-                    <AvatarImage src="https://avatars.githubusercontent.com/u/1486366" />
-                    <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
             </div>
         </nav>  
     );

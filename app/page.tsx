@@ -1,6 +1,7 @@
 import AppAreaChart from "@/components/AppAreaChart";
 import AppBarChart from "@/components/AppBarChart";
 import AppPieChart from "@/components/AppPieChart";
+import AppLineChart from "@/components/AppLineChart";
 
 const HomePage = () => {
     return (
@@ -13,7 +14,9 @@ const HomePage = () => {
             <div className='bg-primary-foreground p-4 rounded-lg lg:col-span-2 xl:col-span-2 xl:col-span-1 2xl:col-span-2'>
                 <AppAreaChart />
             </div>
-            <div className='bg-primary-foreground p-4 rounded-lg'>Lorem</div>
+            <div className='bg-primary-foreground p-4 rounded-lg'>
+                <AppLineChart />
+            </div>
         </div>
     );
 };
