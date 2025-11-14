@@ -4,38 +4,36 @@ import { ChartContainer, ChartLegend, ChartTooltip, ChartTooltipContent, ChartLe
 import { AreaChart, Area, CartesianGrid, XAxis, YAxis } from "recharts"
 
 const chartConfig = {
-  desktop: {
-    label: "Desktop",
+  Publica: {
+    label: "Pública",
     color: "#2563eb",
   },
-  mobile: {
-    label: "Mobile",
+  Privada: {
+    label: "Privada",
     color: "#60a5fa",
   },
 } satisfies ChartConfig
 
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { ano: 2020, Publica: 505.9, Privada: 598.2 },
+  { ano: 2021, Publica: 507.8, Privada: 590.9 },
+  { ano: 2022, Publica: 519.5, Privada: 601.4 },
+  { ano: 2023, Publica: 519.3, Privada: 611.8 },
 ]
 
     const AppAreaChart = () => {
     return (
         <div className="">
-            <h1 className="text-lg font-medium mb-6">Pública x Particular</h1>
+            <h1 className="text-lg font-medium mb-1">Evolução da Nota Média Geral</h1>
+            <p className="text-sm text-muted-foreground mb-4">Comparativo entre escolas públicas e privadas</p>
             <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
                 <AreaChart accessibilityLayer data={chartData}>
                     <CartesianGrid vertical={false} />
                     <XAxis
-                        dataKey="month"
+                        dataKey="ano"
                         tickLine={true}
                         tickMargin={10}
                         axisLine={false}
-                        tickFormatter={(value) => value.slice(0, 3)}
                     />
                     <YAxis
                         tickLine={true}
@@ -45,45 +43,45 @@ const chartData = [
                     <ChartTooltip content={<ChartTooltipContent />} />
                     <ChartLegend content={<ChartLegendContent />} />
                     <defs>
-                    <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
+                    <linearGradient id="fillPublica" x1="0" y1="0" x2="0" y2="1">
                         <stop
                         offset="5%"
-                        stopColor="var(--color-desktop)"
+                        stopColor="var(--color-Publica)"
                         stopOpacity={0.8}
                         />
                         <stop
                         offset="95%"
-                        stopColor="var(--color-desktop)"
+                        stopColor="var(--color-Publica)"
                         stopOpacity={0.1}
                         />
                     </linearGradient>
-                    <linearGradient id="fillMobile" x1="0" y1="0" x2="0" y2="1">
+                    <linearGradient id="fillPrivada" x1="0" y1="0" x2="0" y2="1">
                         <stop
                         offset="5%"
-                        stopColor="var(--color-mobile)"
+                        stopColor="var(--color-Privada)"
                         stopOpacity={0.8}
                         />
                         <stop
                         offset="95%"
-                        stopColor="var(--color-mobile)"
+                        stopColor="var(--color-Privada)"
                         stopOpacity={0.1}
                         />
                     </linearGradient>
                     </defs>
                     <Area
-                        dataKey="mobile"
+                        dataKey="Privada"
                         type="natural"
-                        fill="url(#fillMobile)"
+                        fill="url(#fillPrivada)"
                         fillOpacity={0.4}
-                        stroke="var(--color-mobile)"
+                        stroke="var(--color-Privada)"
                         stackId="a"
                     />
                     <Area
-                        dataKey="desktop"
+                        dataKey="Publica"
                         type="natural"
-                        fill="url(#fillDesktop)"
+                        fill="url(#fillPublica)"
                         fillOpacity={0.4}
-                        stroke="var(--color-desktop)"
+                        stroke="var(--color-Publica)"
                         stackId="a"
                     />
                 </AreaChart>

@@ -4,6 +4,7 @@ import AppBarChartMixed from "@/components/AppBarChartMixed";
 import AppPieChart from "@/components/AppPieChart";
 import AppLineChart from "@/components/AppLineChart";
 import AppBarChartActive from "@/components/AppBarChartActive";
+import AppBarChartInteractive from "@/components/AppBarChartInteractive";
 
 const HomePage = () => {
     return (
@@ -18,11 +19,12 @@ const HomePage = () => {
             <div className='bg-grid p-4 rounded-lg lg:col-span-2 xl:col-span-2 xl:col-span-1 2xl:col-span-2'>
                 <AppBarChartMixed />
             </div>
-            <div className='bg-grid p-4 rounded-lg'>
-        
-            </div>
+            <div className='bg-grid p-4 rounded-lg'><AppPieChart/></div>
              <div className='bg-grid p-4 rounded-lg lg:col-span-2 xl:col-span-2 xl:col-span-1 2xl:col-span-2'>
                 <AppAreaChart />
+            </div>
+            <div className='bg-grid p-4 rounded-lg lg:col-span-2 xl:col-span-2 xl:col-span-1 2xl:col-span-2'>
+                <AppBarChartInteractive />
             </div>
         </div>
     );

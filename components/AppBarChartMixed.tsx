@@ -72,7 +72,7 @@ export function ChartBarMixed() {
           data={chartData}
           layout="vertical"
           margin={{
-            left: 0,
+            left: 80,
             top: 10,
             right: 10,
             bottom: 10,

@@ -35,7 +35,7 @@ const subjectAbbr: Record<string, string> = {
     const AppBarChart = () => {
     return (
         <div className="">
-            <h1 className="text-lg font-medium mb-6">Desempenho: Escolas Públicas x Privadas - ENEM PE</h1>
+            <h1 className="text-lg font-medium mb-6">Escolas Públicas x Privadas - ENEM PE</h1>
             <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
                 <BarChart accessibilityLayer data={chartData}>
                     <CartesianGrid vertical={false} />
