@@ -20,7 +20,6 @@ const chartData = [
 
 const barColors = ["#8EC5FF", "#2B7FFF", "#155DFC", "#1447E6", "#193CB8"]
 
-
 const chartConfig = {
   participantes: {
     label: "Número de Participantes",
@@ -30,6 +29,22 @@ const chartConfig = {
     label: "Ano",
   },
 } satisfies ChartConfig
+
+function CustomLegend() {
+  return (
+    <div className="mt-3 flex flex-wrap justify-center gap-4 text-xs text-muted-foreground">
+      {chartData.map((item, index) => (
+        <div key={item.ano} className="flex items-center gap-2">
+          <span
+            className="h-2.5 w-2.5 rounded-[2px]"
+            style={{ backgroundColor: barColors[index % barColors.length] }}
+          />
+          <span>{item.ano}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
 
 export default function AppBarChartActive() {
   const formatNumber = (value: number) => {
@@ -84,7 +99,7 @@ export default function AppBarChartActive() {
               />
             }
           />
-          <ChartLegend content={<ChartLegendContent />} />
+          <ChartLegend content={<CustomLegend />} />
 
           <Bar
             dataKey="participantes"

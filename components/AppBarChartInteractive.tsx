@@ -7,6 +7,8 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
+  ChartLegend,
+  ChartLegendContent,
 } from "@/components/ui/chart"
 
 export const description = "Distribuição de participantes por faixa de renda (Q006)"
@@ -71,6 +73,7 @@ const AppBarChartInteractive = () => {
                   />
                 }
               />
+              <ChartLegend content={<ChartLegendContent />} />
               <Bar
                 dataKey="percentual"
                 fill="var(--color-percentual)"
