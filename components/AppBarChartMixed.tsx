@@ -28,7 +28,7 @@ const chartConfig = {
     label: "Branca",
     color: "#8EC5FF",
   },
-  "Não declarado": {
+  Nao_declarado: {
     label: "Não declarado",
     color: "#2B7FFF",
   },
@@ -52,7 +52,7 @@ const chartConfig = {
 
 const chartData = [
   { cor_raca: "Branca", nota_media: 562.0, fill: "var(--color-Branca)" },
-  { cor_raca: "Não declarado", nota_media: 523.3, fill: "var(--color-Não declarado)" },
+  { cor_raca: "Nao_declarado", nota_media: 523.3, fill: "var(--color-Nao_declarado)" },
   { cor_raca: "Parda", nota_media: 521.1, fill: "var(--color-Parda)" },
   { cor_raca: "Amarela", nota_media: 512.5, fill: "var(--color-Amarela)" },
   { cor_raca: "Preta", nota_media: 509.1, fill: "var(--color-Preta)" },

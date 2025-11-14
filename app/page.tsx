@@ -1,5 +1,6 @@
 import AppAreaChart from "@/components/AppAreaChart";
 import AppBarChart from "@/components/AppBarChart";
+import AppBarChartMixed from "@/components/AppBarChartMixed";
 import AppPieChart from "@/components/AppPieChart";
 import AppLineChart from "@/components/AppLineChart";
 import AppBarChartActive from "@/components/AppBarChartActive";
@@ -15,13 +16,13 @@ const HomePage = () => {
             </div>
             <div className='bg-grid p-4 rounded-lg'><AppPieChart/></div>
             <div className='bg-grid p-4 rounded-lg lg:col-span-2 xl:col-span-2 xl:col-span-1 2xl:col-span-2'>
-                <AppAreaChart />
+                <AppBarChartMixed />
             </div>
             <div className='bg-grid p-4 rounded-lg'>
         
             </div>
              <div className='bg-grid p-4 rounded-lg lg:col-span-2 xl:col-span-2 xl:col-span-1 2xl:col-span-2'>
-                <AppLineChart />
+                <AppAreaChart />
             </div>
         </div>
     );
