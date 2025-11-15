@@ -1,17 +1,28 @@
 "use client"
 
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis, ResponsiveContainer } from "recharts"
+import * as React from "react"
+import type { SVGProps } from "react"
+import { TrendingUp } from "lucide-react"
+import { Bar, BarChart, XAxis } from "recharts"
+import { AnimatePresence, motion } from "framer-motion"
 
 import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-  ChartLegend,
-  ChartLegendContent,
-} from "@/components/ui/chart"
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { ChartConfig, ChartContainer } from "@/components/ui/chart"
+import { cn } from "@/lib/utils"
+import { JetBrains_Mono } from "next/font/google"
 
 export const description = "Distribuição de participantes por faixa de renda (Q006)"
+
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+})
 
 const chartData = [
   { faixa_renda: "Nenhuma renda", percentual: 7.7 },
@@ -36,62 +47,130 @@ const chartData = [
 const chartConfig = {
   percentual: {
     label: "Porcentagem",
-    color: "#2563eb",
+    color: "var(--secondary-foreground)",
   },
 } satisfies ChartConfig
 
 const AppBarChartInteractive = () => {
+  const [activeIndex, setActiveIndex] = React.useState<number | undefined>(
+    undefined,
+  )
+
+  const activeData = React.useMemo(() => {
+    if (activeIndex === undefined) return null
+    return chartData[activeIndex]
+  }, [activeIndex])
+
+  const currentValue = activeData?.percentual ?? chartData[1]?.percentual
+  const currentLabel = activeData?.faixa_renda ?? "Até 1.320"
+
   return (
-    <div className="">
-      <h1 className="text-lg font-medium mb-6">
-        Distribuição de Participantes por Faixa de Renda
-      </h1>
-      <div className="w-full h-[350px]">
-        <ChartContainer config={chartConfig} className="w-full h-full">
-          <ResponsiveContainer width="100%" height="100%">
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <span
+            className={cn(
+              jetBrainsMono.className,
+              "text-2xl tracking-tighter",
+            )}
+          >
+            {currentValue.toFixed(1)}%
+          </span>
+          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[11px] font-medium text-emerald-500">
+            <TrendingUp className="h-3 w-3" />
+            <span>+5,2%</span>
+          </span>
+        </CardTitle>
+        <CardDescription>
+          Distribuição de participantes por faixa de renda (Q006)
+        </CardDescription>
+        <p className="text-xs text-muted-foreground mt-1">
+          Faixa selecionada: {currentLabel}
+        </p>
+      </CardHeader>
+      <CardContent>
+        <AnimatePresence mode="wait">
+          <ChartContainer config={chartConfig}>
             <BarChart
               accessibilityLayer
               data={chartData}
-              margin={{ top: 20, right: 20, left: 0, bottom: 20 }}
+              onMouseLeave={() => setActiveIndex(undefined)}
             >
-              <CartesianGrid vertical={false} />
               <XAxis
                 dataKey="faixa_renda"
                 tickLine={false}
+                tickMargin={10}
                 axisLine={false}
-                tickMargin={8}
                 interval={0}
                 tickFormatter={(_, index) => String.fromCharCode(65 + index)}
               />
-              <YAxis
-                tickLine={false}
-                axisLine={false}
-                tickMargin={10}
-              />
-              <ChartTooltip
-                content={
-                  <ChartTooltipContent
-                    nameKey="percentual"
-                    labelFormatter={(_, payload) => {
-                      if (!payload || payload.length === 0) return null
-
-                      const item = payload[0]
-                      return String(item?.payload?.faixa_renda ?? "")
-                    }}
+              <Bar
+                dataKey="percentual"
+                fill="var(--secondary-foreground)"
+                shape={
+                  <CustomBar
+                    setActiveIndex={setActiveIndex}
+                    activeIndex={activeIndex}
                   />
                 }
               />
-              <ChartLegend content={<ChartLegendContent />} />
-              <Bar
-                dataKey="percentual"
-                fill="var(--color-percentual)"
-                radius={[4, 4, 0, 0]}
-              />
             </BarChart>
-          </ResponsiveContainer>
-        </ChartContainer>
-      </div>
-    </div>
+          </ChartContainer>
+        </AnimatePresence>
+      </CardContent>
+    </Card>
+  )
+}
+
+interface CustomBarProps extends SVGProps<SVGSVGElement> {
+  setActiveIndex: (index?: number) => void
+  index?: number
+  activeIndex?: number
+  value?: string | number
+}
+
+const CustomBar = (props: CustomBarProps) => {
+  const { fill, x, y, width, height, index, activeIndex, value } = props as any
+
+  const xPos = Number(x || 0)
+  const realWidth = Number(width || 0)
+  const isActive = index === activeIndex
+  const collapsedWidth = 2
+  const barX = isActive ? xPos : xPos + (realWidth - collapsedWidth) / 2
+  const textX = xPos + realWidth / 2
+
+  return (
+    <g onMouseEnter={() => props.setActiveIndex(index)}>
+      <motion.rect
+        style={{ willChange: "transform, width" }}
+        y={y}
+        initial={{ width: collapsedWidth, x: barX }}
+        animate={{ width: isActive ? realWidth : collapsedWidth, x: barX }}
+        transition={{
+          duration: activeIndex === index ? 0.5 : 1,
+          type: "spring",
+        }}
+        height={height}
+        fill={fill}
+      />
+      {isActive && (
+        <motion.text
+          style={{ willChange: "transform, opacity" }}
+          className={jetBrainsMono.className}
+          key={index}
+          initial={{ opacity: 0, y: -10, filter: "blur(3px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          exit={{ opacity: 0, y: -10, filter: "blur(3px)" }}
+          transition={{ duration: 0.1 }}
+          x={textX}
+          y={Number(y) - 5}
+          textAnchor="middle"
+          fill={fill}
+        >
+          {typeof value === "number" ? `${value.toFixed(1)}%` : value}
+        </motion.text>
+      )}
+    </g>
   )
 }
 

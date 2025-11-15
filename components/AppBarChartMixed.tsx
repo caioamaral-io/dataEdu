@@ -1,7 +1,8 @@
 "use client"
 
+import * as React from "react"
 import { TrendingUp } from "lucide-react"
-import { Bar, BarChart, XAxis, YAxis } from "recharts"
+import { Bar, BarChart, Cell, XAxis, YAxis } from "recharts"
 
 import {
   Card,
@@ -52,7 +53,7 @@ const chartConfig = {
 
 const chartData = [
   { cor_raca: "Branca", nota_media: 562.0, fill: "var(--color-Branca)" },
-  { cor_raca: "Nao_declarado", nota_media: 523.3, fill: "var(--color-Nao_declarado)" },
+  { cor_raca: "Não Declarado", nota_media: 523.3, fill: "var(--color-Nao_declarado)" },
   { cor_raca: "Parda", nota_media: 521.1, fill: "var(--color-Parda)" },
   { cor_raca: "Amarela", nota_media: 512.5, fill: "var(--color-Amarela)" },
   { cor_raca: "Preta", nota_media: 509.1, fill: "var(--color-Preta)" },
@@ -60,43 +61,109 @@ const chartData = [
 ]
 
 export function ChartBarMixed() {
+  const [activeIndex, setActiveIndex] = React.useState<number | null>(null)
+
+  const activeData = React.useMemo(() => {
+    if (activeIndex === null) return null
+    return chartData[activeIndex]
+  }, [activeIndex])
+
   return (
-    <div className="w-full">
-      <h1 className="text-lg font-medium mb-6">Desempenho por Cor/Raça - ENEM PE</h1>
-      <ChartContainer 
-        config={chartConfig}
-        className="min-h-[200px] w-full"
-      >
-        <BarChart
-          accessibilityLayer
-          data={chartData}
-          layout="vertical"
-          margin={{
-            left: 80,
-            top: 10,
-            right: 10,
-            bottom: 10,
-          }}
-        >
-          <YAxis
-            dataKey="cor_raca"
-            type="category"
-            tickLine={false}
-            tickMargin={10}
-            axisLine={false}
-            tickFormatter={(value) =>
-              chartConfig[value as keyof typeof chartConfig]?.label || value
-            }
-          />
-          <XAxis dataKey="nota_media" type="number" hide />
-          <ChartTooltip
-            cursor={false}
-            content={<ChartTooltipContent hideLabel />}
-          />
-          <Bar dataKey="nota_media" layout="vertical" radius={5} />
-        </BarChart>
-      </ChartContainer>
-    </div>
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <span>Desempenho por Cor/Raça - ENEM PE</span>
+          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[11px] font-medium text-emerald-500">
+            <TrendingUp className="h-3 w-3" />
+            <span>+5,2%</span>
+          </span>
+        </CardTitle>
+        <CardDescription>
+          {activeData
+            ? `${activeData.cor_raca}: ${activeData.nota_media.toFixed(1)}`
+            : "Média de notas por cor/raça"}
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <ChartContainer config={chartConfig} className="min-h-[260px] w-full">
+          <BarChart
+            accessibilityLayer
+            data={chartData}
+            layout="vertical"
+            margin={{
+              left: 80,
+              top: 10,
+              right: 10,
+              bottom: 10,
+            }}
+            onMouseLeave={() => setActiveIndex(null)}
+          >
+            <rect
+              x="0"
+              y="0"
+              width="100%"
+              height="100%"
+              fill="url(#highlighted-pattern-dots)"
+            />
+            <defs>
+              <DottedBackgroundPattern />
+            </defs>
+            <YAxis
+              dataKey="cor_raca"
+              type="category"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+              tickFormatter={(value) =>
+                chartConfig[value as keyof typeof chartConfig]?.label || value
+              }
+            />
+            <XAxis dataKey="nota_media" type="number" hide />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            <Bar dataKey="nota_media" layout="vertical" radius={4}>
+              {chartData.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  className="duration-200"
+                  fill={entry.fill}
+                  fillOpacity={
+                    activeIndex === null ? 1 : activeIndex === index ? 1 : 0.3
+                  }
+                  stroke={activeIndex === index ? entry.fill : ""}
+                  onMouseEnter={() => setActiveIndex(index)}
+                />
+              ))}
+            </Bar>
+          </BarChart>
+        </ChartContainer>
+      </CardContent>
+      <CardFooter className="flex justify-between text-xs text-muted-foreground">
+      </CardFooter>
+    </Card>
+  )
+}
+
+const DottedBackgroundPattern = () => {
+  return (
+    <pattern
+      id="highlighted-pattern-dots"
+      x="0"
+      y="0"
+      width="10"
+      height="10"
+      patternUnits="userSpaceOnUse"
+    >
+      <circle
+        className="dark:text-muted/40 text-muted"
+        cx="2"
+        cy="2"
+        r="1"
+        fill="currentColor"
+      />
+    </pattern>
   )
 }
 

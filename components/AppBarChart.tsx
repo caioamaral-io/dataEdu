@@ -1,18 +1,25 @@
 "use client"
 
-import { ChartContainer, ChartLegend, ChartTooltip, ChartTooltipContent, ChartLegendContent, type ChartConfig } from "@/components/ui/chart"
-import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from "recharts"
 
-const chartConfig = {
-  publica: {
-    label: "Pública",
-    color: "#2563eb",
-  },
-  privada: {
-    label: "Privada",
-    color: "#60a5fa",
-  },
-} satisfies ChartConfig
+import * as React from "react"
+import { Bar, BarChart, Cell, XAxis } from "recharts"
+
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart"
+import { TrendingUp } from "lucide-react"
+
 
 const chartData = [
   { subject: "Ciências da Natureza", publica: 469, privada: 538 },
@@ -20,8 +27,21 @@ const chartData = [
   { subject: "Linguagens e Códigos", publica: 501, privada: 560 },
   { subject: "Matemática", publica: 498, privada: 618 },
   { subject: "Redação", publica: 600, privada: 780 },
-  { subject: "Média Geral", publica: 511, privada: 605 },
+  { subject: "Média", publica: 513, privada: 614 },
 ]
+
+
+const chartConfig = {
+  publica: {
+    label: "Pública",
+    color: "var(--chart-1)",
+  },
+  privada: {
+    label: "Privada",
+    color: "var(--chart-2)",
+  },
+} satisfies ChartConfig
+
 
 const subjectAbbr: Record<string, string> = {
   "Ciências da Natureza": "Natureza",
@@ -29,36 +49,109 @@ const subjectAbbr: Record<string, string> = {
   "Linguagens e Códigos": "Linguagens",
   "Matemática": "Matématica",
   "Redação": "Redação",
-  "Média Geral": "Média",
+  "Média": "Média",
 }
 
-    const AppBarChart = () => {
-    return (
-        <div className="">
-            <h1 className="text-lg font-medium mb-6">Escolas Públicas x Privadas - ENEM PE</h1>
-            <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-                <BarChart accessibilityLayer data={chartData}>
-                    <CartesianGrid vertical={false} />
-                    <XAxis
-                        dataKey="subject"
-                        tickLine={false}
-                        tickMargin={10}
-                        axisLine={false}
-                        tickFormatter={(value: string) => subjectAbbr[value] ?? value}
-                    />
-                    <YAxis
-                        tickLine={false}
-                        tickMargin={10}
-                        axisLine={false} 
-                    />
-                    <ChartTooltip content={<ChartTooltipContent />} />
-                    <ChartLegend content={<ChartLegendContent />} />
-                    <Bar dataKey="publica" fill="var(--color-publica)" radius={4} />
-                    <Bar dataKey="privada" fill="var(--color-privada)" radius={4} />
-                </BarChart>
-            </ChartContainer> 
-        </div>
-    );
-};
- 
+
+const AppBarChart = () => {
+  const [activeIndex, setActiveIndex] = React.useState<number | null>(null)
+
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <span>Escolas Públicas x Privadas</span>
+          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[11px] font-medium text-emerald-500">
+            <TrendingUp className="h-3 w-3" />
+            <span>+15,3%</span>
+          </span>
+        </CardTitle>
+        <CardDescription>Desempenho médio no ENEM - Pernambuco</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <ChartContainer config={chartConfig}>
+          <BarChart
+            accessibilityLayer
+            data={chartData}
+            onMouseLeave={() => setActiveIndex(null)}
+          >
+            <rect
+              x="0"
+              y="0"
+              width="100%"
+              height="85%"
+              fill="url(#enem-public-private-pattern-dots)"
+            />
+            <defs>
+              <DottedBackgroundPattern />
+            </defs>
+            <XAxis
+              dataKey="subject"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+              tickFormatter={(value: string) => subjectAbbr[value] ?? value}
+            />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent indicator="dashed" />}
+            />
+            <Bar dataKey="publica" fill="var(--color-publica)" radius={4}>
+              {chartData.map((_, index) => (
+                <Cell
+                  key={`cell-publica-${index}`}
+                  fillOpacity={
+                    activeIndex === null ? 1 : activeIndex === index ? 1 : 0.3
+                  }
+                  stroke={activeIndex === index ? "var(--color-publica)" : ""}
+                  onMouseEnter={() => setActiveIndex(index)}
+                  className="duration-200"
+                />
+              ))}
+            </Bar>
+            <Bar dataKey="privada" fill="var(--color-privada)" radius={4}>
+              {chartData.map((_, index) => (
+                <Cell
+                  key={`cell-privada-${index}`}
+                  fillOpacity={
+                    activeIndex === null ? 1 : activeIndex === index ? 1 : 0.3
+                  }
+                  stroke={activeIndex === index ? "var(--color-privada)" : ""}
+                  onMouseEnter={() => setActiveIndex(index)}
+                  className="duration-200"
+                />
+              ))}
+            </Bar>
+          </BarChart>
+        </ChartContainer>
+      </CardContent>
+    </Card>
+  )
+}
+
+
+const DottedBackgroundPattern = () => {
+  return (
+    <pattern
+      id="enem-public-private-pattern-dots"
+      x="0"
+      y="0"
+      width="10"
+      height="10"
+      patternUnits="userSpaceOnUse"
+    >
+      <circle
+        className="text-muted dark:text-muted/40"
+        cx="2"
+        cy="2"
+        r="1"
+        fill="currentColor"
+      />
+    </pattern>
+  )
+}
+
+
 export default AppBarChart;
+
