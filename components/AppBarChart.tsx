@@ -41,7 +41,7 @@ const subjectAbbr: Record<string, string> = {
                     <CartesianGrid vertical={false} />
                     <XAxis
                         dataKey="subject"
-                        tickLine={true}
+                        tickLine={false}
                         tickMargin={10}
                         axisLine={false}
                         tickFormatter={(value: string) => subjectAbbr[value] ?? value}

@@ -23,11 +23,11 @@ const HomePage = () => {
             <div className='bg-grid p-4 rounded-lg'>
                 <AppAreaChart2 />
             </div>
-             <div className='bg-grid p-4 rounded-lg lg:col-span-2 xl:col-span-2 xl:col-span-1 2xl:col-span-2'>
-                <AppAreaChart />
-            </div>
             <div className='bg-grid p-4 rounded-lg lg:col-span-2 xl:col-span-2 xl:col-span-1 2xl:col-span-2'>
                 <AppBarChartInteractive />
+            </div>
+            <div className='bg-grid p-4 rounded-lg lg:col-span-2 xl:col-span-2 xl:col-span-1 2xl:col-span-2'>
+                <AppAreaChart />
             </div>
         </div>
     );

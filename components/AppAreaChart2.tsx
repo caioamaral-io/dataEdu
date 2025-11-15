@@ -122,12 +122,12 @@ const AppAreaChart2 = () => {
               <CartesianGrid vertical={false} />
               <XAxis
                 dataKey="faixa"
-                tickLine={true}
+                tickLine={false}
                 tickMargin={10}
                 axisLine={false}
               />
               <YAxis
-                tickLine={true}
+                tickLine={false}
                 tickMargin={10}
                 axisLine={false}
               />

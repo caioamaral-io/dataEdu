@@ -66,13 +66,13 @@ export default function AppBarChartActive() {
           <CartesianGrid vertical={false} />
           <XAxis
             dataKey="ano"
-            tickLine={true}
+            tickLine={false}
             tickMargin={10}
             axisLine={false}
           />
           <YAxis
             tickFormatter={formatNumber}
-            tickLine={true}
+            tickLine={false}
             axisLine={false}
             width={80}
           />

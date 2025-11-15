@@ -33,12 +33,12 @@ const chartData = [
                             <CartesianGrid vertical={false} />
                             <XAxis
                                 dataKey="ano"
-                                tickLine={true}
+                                tickLine={false}
                                 tickMargin={10}
                                 axisLine={false}
                             />
                             <YAxis
-                                tickLine={true}
+                                tickLine={false}
                                 tickMargin={10}
                                 axisLine={false} 
                             />
