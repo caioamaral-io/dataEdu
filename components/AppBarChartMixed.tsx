@@ -30,7 +30,7 @@ const chartConfig = {
     color: "#8EC5FF",
   },
   Nao_declarado: {
-    label: "Não declarado",
+    label: "Omisso",
     color: "#2B7FFF",
   },
   Parda: {
@@ -53,7 +53,7 @@ const chartConfig = {
 
 const chartData = [
   { cor_raca: "Branca", nota_media: 562.0, fill: "var(--color-Branca)" },
-  { cor_raca: "Não Declarado", nota_media: 523.3, fill: "var(--color-Nao_declarado)" },
+  { cor_raca: "Omisso", nota_media: 523.3, fill: "var(--color-Nao_declarado)" },
   { cor_raca: "Parda", nota_media: 521.1, fill: "var(--color-Parda)" },
   { cor_raca: "Amarela", nota_media: 512.5, fill: "var(--color-Amarela)" },
   { cor_raca: "Preta", nota_media: 509.1, fill: "var(--color-Preta)" },
@@ -85,16 +85,15 @@ export function ChartBarMixed() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig} className="min-h-[260px] w-full">
+        <ChartContainer config={chartConfig}>
           <BarChart
             accessibilityLayer
             data={chartData}
-            layout="vertical"
             margin={{
-              left: 80,
+              left: 10,
               top: 10,
               right: 10,
-              bottom: 10,
+              bottom: 30,
             }}
             onMouseLeave={() => setActiveIndex(null)}
           >
@@ -102,13 +101,13 @@ export function ChartBarMixed() {
               x="0"
               y="0"
               width="100%"
-              height="100%"
+              height="85%"
               fill="url(#highlighted-pattern-dots)"
             />
             <defs>
               <DottedBackgroundPattern />
             </defs>
-            <YAxis
+            <XAxis
               dataKey="cor_raca"
               type="category"
               tickLine={false}
@@ -118,12 +117,12 @@ export function ChartBarMixed() {
                 chartConfig[value as keyof typeof chartConfig]?.label || value
               }
             />
-            <XAxis dataKey="nota_media" type="number" hide />
+            <YAxis hide />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Bar dataKey="nota_media" layout="vertical" radius={4}>
+            <Bar dataKey="nota_media" radius={4}>
               {chartData.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
@@ -140,8 +139,6 @@ export function ChartBarMixed() {
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex justify-between text-xs text-muted-foreground">
-      </CardFooter>
     </Card>
   )
 }

@@ -44,12 +44,12 @@ const chartConfig = {
 
 
 const subjectAbbr: Record<string, string> = {
-  "Ciências da Natureza": "Natureza",
-  "Ciências Humanas": "Humanas",
-  "Linguagens e Códigos": "Linguagens",
-  "Matemática": "Matématica",
-  "Redação": "Redação",
-  "Média": "Média",
+  "Ciências da Natureza": "CI",
+  "Ciências Humanas": "CH",
+  "Linguagens e Códigos": "LG",
+  "Matemática": "MT",
+  "Redação": "RD",
+  "Média": "MÉD",
 }
 
 

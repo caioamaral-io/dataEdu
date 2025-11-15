@@ -52,7 +52,7 @@ const AppBarChartActive = () => {
 						<span>+8,4%</span>
 					</span>
 				</CardTitle>
-				<CardDescription>2020 - 2023 • Número de participantes em Pernambuco</CardDescription>
+				<CardDescription>2020 - 2023</CardDescription>
 			</CardHeader>
 			<CardContent>
 				<ChartContainer config={chartConfig}>
@@ -78,12 +78,8 @@ const AppBarChartActive = () => {
 							tickMargin={10}
 							axisLine={false}
 						/>
-						<YAxis
-							tickFormatter={formatNumber}
-							tickLine={false}
-							axisLine={false}
-							width={80}
-						/>
+						<YAxis hide />
+
 						<ChartTooltip
 							cursor={false}
 							content={
