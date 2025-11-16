@@ -73,8 +73,29 @@ const faixas = [
   "Q",
 ]
 
+const rendaPorFaixa = [
+  { faixa_renda: "Nenhuma renda", percentual: 7.7 },
+  { faixa_renda: "Até 1.320", percentual: 37.9 },
+  { faixa_renda: "De 1.320 até 1.980", percentual: 14.9 },
+  { faixa_renda: "De 1.980 até 2.640", percentual: 9.5 },
+  { faixa_renda: "De 2.640 até 3.300", percentual: 5.4 },
+  { faixa_renda: "De 3.300 até 3.960", percentual: 4.2 },
+  { faixa_renda: "De 3.960 até 5.280", percentual: 4.7 },
+  { faixa_renda: "De 5.280 até 6.600", percentual: 3.7 },
+  { faixa_renda: "De 6.600 até 7.920", percentual: 2.0 },
+  { faixa_renda: "De 7.920 até 9.240", percentual: 1.4 },
+  { faixa_renda: "De 9.240 até 10.560", percentual: 1.2 },
+  { faixa_renda: "De 10.560 até 13.200", percentual: 1.0 },
+  { faixa_renda: "De 13.200 até 15.840", percentual: 1.2 },
+  { faixa_renda: "De 15.840 até 19.800", percentual: 1.1 },
+  { faixa_renda: "De 19.800 até 26.400", percentual: 1.1 },
+  { faixa_renda: "De 26.400 até 39.600", percentual: 1.2 },
+  { faixa_renda: "Mais de 39.600", percentual: 1.8 },
+]
+
 const chartData = faixas.map((faixa, index) => ({
   faixa,
+  faixa_renda: rendaPorFaixa[index]?.faixa_renda,
   natureza: [
     450, 460, 470, 480, 490, 500, 510, 520, 530, 540, 550, 560, 570, 580, 590,
     600, 610,
@@ -102,6 +123,12 @@ type ActiveProperty = keyof typeof chartConfig | "all"
 const AppAreaChart2 = () => {
   const [activeProperty, setActiveProperty] =
     React.useState<ActiveProperty>("all")
+  const [activeIndex, setActiveIndex] = React.useState<number | null>(null)
+
+  const activeData = React.useMemo(() => {
+    if (activeIndex === null) return null
+    return chartData[activeIndex]
+  }, [activeIndex])
 
   return (
     <Card>
@@ -152,7 +179,9 @@ const AppAreaChart2 = () => {
           </Select>
         </div>
         <CardDescription>
-          Notas médias por faixa de renda e disciplina do ENEM.
+          {activeData
+            ? `${activeData.faixa}: ${activeData.faixa_renda}`
+            : "Notas médias por faixa de renda e disciplina do ENEM."}
         </CardDescription>
       </CardHeader>
 
@@ -161,12 +190,16 @@ const AppAreaChart2 = () => {
           <BarChart
             accessibilityLayer
             data={chartData}
-
             layout="vertical"
-
             margin={{
               left: -15,
             }}
+            onMouseMove={(state: any) => {
+              if (state?.activeTooltipIndex != null) {
+                setActiveIndex(state.activeTooltipIndex as number)
+              }
+            }}
+            onMouseLeave={() => setActiveIndex(null)}
           >
             <YAxis
               type="category"
