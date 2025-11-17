@@ -44,24 +44,20 @@ const AppAreaChart = () => {
   const [xAxis, setXAxis] = React.useState<number | null>(null);
 
   return (
-    <Card>
+    <Card className="h-full flex flex-col">
       <CardHeader>
         <CardTitle>
           Evolução da Nota Média Geral
-          <Badge
-            variant="outline"
-            className="text-red-500 bg-red-500/10 border-none ml-2"
-          >
-            <TrendingDown className="h-4 w-4" />
-            <span>-5,2%</span>
-          </Badge>
         </CardTitle>
         <CardDescription>
           Comparativo entre escolas públicas e privadas
         </CardDescription>
       </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig}>
+      <CardContent className="flex-1 flex items-center justify-center">
+        <ChartContainer
+          config={chartConfig}
+          className="h-[260px] w-full flex items-center justify-center"
+        >
           <AreaChart
             accessibilityLayer
             data={chartData}
@@ -74,6 +70,7 @@ const AppAreaChart = () => {
               tickLine={false}
               axisLine={false}
               tickMargin={8}
+              interval={0}
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
             <defs>
