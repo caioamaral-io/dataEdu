@@ -49,8 +49,11 @@ const Navbar = () => {
 														<span className="sr-only">{link.label}</span>
 													</NavigationMenuLink>
 												</TooltipTrigger>
-												<TooltipContent side="bottom" className="px-2 py-1 text-xs">
-													<p>{link.label}</p>
+												<TooltipContent
+													side="bottom"
+													className="px-3 py-1 text-xs rounded-md border border-border bg-background text-foreground shadow-sm"
+												>
+													<p className="leading-none">{link.label}</p>
 												</TooltipContent>
 											</Tooltip>
 										</NavigationMenuItem>
