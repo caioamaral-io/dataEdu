@@ -150,7 +150,7 @@ const AppBarVerticalChart = () => {
               setActiveProperty(value)
             }}
           >
-            <SelectTrigger className="text-xs !h-6 !px-1.5">
+            <SelectTrigger className="text-xs h-7 px-2 py-0 w-[110px]">
               <SelectValue placeholder="Selecionar disciplina" />
             </SelectTrigger>
             <SelectContent align="end">
