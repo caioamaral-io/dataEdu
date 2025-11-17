@@ -1,6 +1,6 @@
 "use client"
 
-import { FileTextIcon, HomeIcon, LayersIcon, UsersIcon, Moon, Sun } from "lucide-react";
+import { FileTextIcon, LayoutGrid, LayersIcon, Github, Play, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import {
@@ -19,10 +19,11 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Button } from "./ui/button";
 
 const navigationLinks = [
-	{ href: "#", label: "Dashboard", icon: HomeIcon },
-	{ href: "#", label: "Projetos", icon: LayersIcon },
-	{ href: "#", label: "Relatórios", icon: FileTextIcon },
-	{ href: "#", label: "Equipe", icon: UsersIcon },
+	{ href: "#", label: "Dashboard", icon: LayoutGrid  },
+  { href: "https://github.com/caioamaral-io/Dashboard", label: "Github", icon: Github },
+	{ href: "#", label: "Documentation", icon: FileTextIcon },
+  { href: "#", label: "Site", icon: LayersIcon },
+  { href: "#", label: "Pitch", icon: Play },
 ];
 
 const Navbar = () => {
@@ -64,7 +65,6 @@ const Navbar = () => {
 					</div>
 				</div>
 
-				{/* Direita: botão de mudança de tema, mantido no mesmo lugar */}
 				<div className="flex items-center gap-4">
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
