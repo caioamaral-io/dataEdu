@@ -32,7 +32,6 @@ const Navbar = () => {
 	return (
 		<header className="border-b px-4 md:px-6">
 			<div className="flex h-14 items-center justify-between gap-4">
-				{/* Esquerda: ícones com tooltip */}
 				<div className="flex items-center gap-4">
 					<div className="flex">
 						<NavigationMenu>
