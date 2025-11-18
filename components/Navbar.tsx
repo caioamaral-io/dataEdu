@@ -1,7 +1,8 @@
 "use client"
 
-import { FileTextIcon, LayoutGrid, LayersIcon, Github, Play, Moon, Sun } from "lucide-react";
+import { FileTextIcon, LayoutGrid, LayersIcon, Github, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import { Lora } from "next/font/google";
 
 import {
 	NavigationMenu,
@@ -18,12 +19,16 @@ import {
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
 
+const lora = Lora({
+	subsets: ["latin"],
+	weight: ["400", "500", "600", "700"],
+});
+
 const navigationLinks = [
 	{ href: "#", label: "Dashboard", icon: LayoutGrid  },
   { href: "https://github.com/caioamaral-io/Dashboard", label: "Github", icon: Github },
 	{ href: "#", label: "Documentation", icon: FileTextIcon },
   { href: "#", label: "Site", icon: LayersIcon },
-  { href: "#", label: "Pitch", icon: Play },
 ];
 
 const Navbar = () => {
@@ -32,6 +37,9 @@ const Navbar = () => {
 	return (
 		<header className="border-b px-4 md:px-6">
 			<div className="flex h-14 items-center justify-between gap-4">
+				<div className="flex items-center">
+					<span className={`${lora.className} font-regular text-lg`}>Dash Enem</span>
+				</div>
 				<div />
 				<div className="flex items-center gap-4">
 					<NavigationMenu>

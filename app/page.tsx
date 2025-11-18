@@ -17,10 +17,10 @@ const HomePage = () => {
             </div>
             <div className='bg-grid p-4 rounded-lg'><AppPieChart/></div>
             <div className='bg-grid p-4 rounded-lg lg:col-span-2 xl:col-span-2 xl:col-span-1 2xl:col-span-2'>
-                <AppBarChartMixed />
+                <AppAreaChart />
             </div>
             <div className='bg-grid p-4 rounded-lg'>
-                <AppAreaChart />
+                <AppBarChartMixed />
             </div>
             <div className='bg-grid p-4 rounded-lg lg:col-span-2 xl:col-span-2 xl:col-span-1 2xl:col-span-2'>
                 <AppBarChartInteractive />

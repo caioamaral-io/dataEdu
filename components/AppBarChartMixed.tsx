@@ -68,7 +68,7 @@ export function ChartBarMixed() {
   }, [activeIndex])
 
   return (
-    <Card>
+    <Card className="h-full flex flex-col">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <span>Desempenho por Cor/Raça - ENEM PE</span>
@@ -79,8 +79,11 @@ export function ChartBarMixed() {
             : "Média de notas por cor/raça"}
         </CardDescription>
       </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig}>
+      <CardContent className="flex-1 flex items-center justify-center">
+        <ChartContainer
+          config={chartConfig}
+          className="h-[320px] w-full flex items-center justify-center"
+        >
           <BarChart
             accessibilityLayer
             data={chartData}
