@@ -49,8 +49,8 @@ const AppAreaChart = () => {
         <CardTitle>
           Evolução da Nota Média Geral
         </CardTitle>
-        <CardDescription>
-          Comparativo entre escolas públicas e privadas
+        <CardDescription className="text-md">
+          Comparativo: Escolas Públicas x Privadas
         </CardDescription>
       </CardHeader>
       <CardContent className="flex-1 flex items-center justify-center">

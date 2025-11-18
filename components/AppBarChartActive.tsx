@@ -59,7 +59,7 @@ const AppBarChartActive = () => {
 						<span>+8,4%</span>
 					</span>
 				</CardTitle>
-				<CardDescription>2020 - 2023</CardDescription>
+				<CardDescription className="text-md">2020 - 2023</CardDescription>
 			</CardHeader>
 			<CardContent>
 				<ChartContainer config={chartConfig}>
