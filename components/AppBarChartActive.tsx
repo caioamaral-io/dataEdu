@@ -52,9 +52,9 @@ const AppBarChartActive = () => {
 	return (
 		<Card>
 			<CardHeader>
-				<CardTitle className="flex items-center gap-2">
-					<span>Participantes do ENEM por Ano - PE</span>
-					<span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[11px] font-medium text-emerald-500">
+				<CardTitle className="flex flex-wrap items-center gap-2">
+					<span className="leading-tight">Participantes do ENEM por Ano - PE</span>
+					<span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-[2px] text-[10px] sm:text-[11px] font-medium text-emerald-500">
 						<TrendingUp className="h-3 w-3" />
 						<span>+26,24%</span>
 					</span>

@@ -10,7 +10,6 @@ import {
  ChartLegend,
  ChartLegendContent,
 } from "./ui/chart";
-import { TrendingUp } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "./ui/card";
 
 
@@ -96,7 +95,7 @@ const AppPieChart = () => {
         <CardTitle className="text-lg font-medium">
           Renda dos Alunos com Nota ≥ 713 (Pública)
         </CardTitle>
-        <p className="text-sm text-muted-foreground mt-1">
+        <p className="text-md text-muted-foreground mt-1">
           Faixa: {currentCategoria} - ({currentPercent.toFixed(1)}%)
         </p>
       </CardHeader>
@@ -208,7 +207,7 @@ const AppPieChart = () => {
           Superação socioeconômica
         </div>
         <div className="text-muted-foreground leading-none text-center">
-          Alunos de baixa renda lideram em desempenho elevado 
+          Alunos de baixa renda se destacam. 
         </div>
       </CardFooter>
     </Card>
