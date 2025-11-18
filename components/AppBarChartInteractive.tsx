@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import type { SVGProps } from "react"
-import { TrendingUp } from "lucide-react"
 import { Bar, BarChart, XAxis } from "recharts"
 import { AnimatePresence, motion } from "framer-motion"
 
@@ -75,10 +74,6 @@ const AppBarChartInteractive = () => {
             )}
           >
             {currentValue.toFixed(1)}%
-          </span>
-          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[11px] font-medium text-emerald-500">
-            <TrendingUp className="h-3 w-3" />
-            <span>+5,2%</span>
           </span>
         </CardTitle>
         <CardDescription>

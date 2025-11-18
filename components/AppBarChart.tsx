@@ -18,7 +18,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
-import { TrendingUp } from "lucide-react"
 
 
 const chartData = [
@@ -62,10 +61,6 @@ const AppBarChart = () => {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <span>Escolas Públicas x Privadas</span>
-          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[11px] font-medium text-emerald-500">
-            <TrendingUp className="h-3 w-3" />
-            <span>+15,3%</span>
-          </span>
         </CardTitle>
         <CardDescription>Desempenho médio no ENEM - Pernambuco</CardDescription>
       </CardHeader>

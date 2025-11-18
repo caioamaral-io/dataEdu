@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { TrendingDown } from "lucide-react"
 import { Bar, BarChart, XAxis, YAxis } from "recharts"
 
 import {
@@ -26,7 +25,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Badge } from "@/components/ui/badge"
 
 export const description = "Notas médias ENEM por disciplina e faixa de renda"
 
@@ -136,13 +134,6 @@ const AppBarVerticalChart = () => {
         <div className="flex flex-row justify-between">
           <CardTitle>
             Média Notas por Prova x Renda Familiar
-            <Badge
-              variant="outline"
-              className="text-emerald-500 bg-emerald-500/10 border-none ml-2 inline-flex items-center gap-1 text-[11px] px-2 py-0.5"
-            >
-              <TrendingDown className="h-3 w-3" />
-              <span>-5,2%</span>
-            </Badge>
           </CardTitle>
           <Select
             value={activeProperty}
