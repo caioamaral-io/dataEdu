@@ -7,8 +7,6 @@ import {
  ChartContainer,
  ChartTooltip,
  ChartTooltipContent,
- ChartLegend,
- ChartLegendContent,
 } from "./ui/chart";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "./ui/card";
 
