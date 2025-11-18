@@ -177,7 +177,8 @@ const AppBarVerticalChart = () => {
       </CardHeader>
 
       <CardContent>
-        <ChartContainer config={chartConfig}>
+        <ChartContainer config={chartConfig} className="h-[260px]">
+
           <BarChart
             accessibilityLayer
             data={chartData}

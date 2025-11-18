@@ -90,7 +90,7 @@ const AppAreaChart = () => {
       <CardContent className="flex-1 flex items-center justify-center">
         <ChartContainer
           config={chartConfig}
-          className="h-[360px] w-full flex items-center justify-center"
+          className="h-[260px] w-full flex items-center justify-center"
         >
           <AreaChart
             accessibilityLayer

@@ -65,7 +65,7 @@ const AppBarChart = () => {
         <CardDescription className="text-md">Desempenho médio no ENEM - Pernambuco</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig}>
+        <ChartContainer config={chartConfig} className="h-[260px]">
           <BarChart
             accessibilityLayer
             data={chartData}

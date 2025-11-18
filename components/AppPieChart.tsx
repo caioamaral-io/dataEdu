@@ -100,7 +100,7 @@ const AppPieChart = () => {
       <CardContent className="flex-1 flex items-center justify-center">
         <ChartContainer
           config={chartConfig}
-          className="h-[260px] w-full flex items-center justify-center"
+          className="h-[220px] w-full flex items-center justify-center"
         >
           <PieChart>
             <rect

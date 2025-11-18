@@ -85,7 +85,7 @@ const AppBarChartInteractive = () => {
       </CardHeader>
       <CardContent>
         <AnimatePresence mode="wait">
-          <ChartContainer config={chartConfig}>
+          <ChartContainer config={chartConfig} className="h-[240px]">
             <BarChart
               accessibilityLayer
               data={chartData}

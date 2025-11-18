@@ -81,7 +81,7 @@ export function ChartBarMixed() {
       <CardContent className="flex-1 flex items-center justify-center">
         <ChartContainer
           config={chartConfig}
-          className="h-[320px] w-full flex items-center justify-center"
+          className="h-[240px] w-full flex items-center justify-center"
         >
           <BarChart
             accessibilityLayer
