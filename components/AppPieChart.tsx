@@ -90,8 +90,8 @@ const AppPieChart = () => {
   return (
     <Card className="h-full flex flex-col">
       <CardHeader>
-        <CardTitle className="text-lg font-medium">
-          Renda dos Alunos com Nota ≥ 713 (Pública)
+        <CardTitle className="flex items-center gap-2">
+          Renda dos Alunos Nota ≥ 713 (Pública)
         </CardTitle>
         <p className="text-sm text-muted-foreground mt-1">
           Faixa: {currentCategoria} - ({currentPercent.toFixed(1)}%)

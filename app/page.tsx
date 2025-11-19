@@ -17,14 +17,14 @@ const HomePage = () => {
                 <AppBarChartActive />
             </div>
 
-            {/* Linha 2: card médio, card grande, card médio */}
-            <div className="bg-grid p-3 lg:p-4 rounded-lg lg:col-span-4">
+            {/* Linha 2: card menor, card maior, card menor */}
+            <div className="bg-grid p-3 lg:p-4 rounded-lg lg:col-span-3">
                 <AppPieChart />
             </div>
-            <div className="bg-grid p-3 lg:p-4 rounded-lg lg:col-span-4">
+            <div className="bg-grid p-3 lg:p-4 rounded-lg lg:col-span-6">
                 <AppAreaChart />
             </div>
-            <div className="bg-grid p-3 lg:p-4 rounded-lg lg:col-span-4">
+            <div className="bg-grid p-3 lg:p-4 rounded-lg lg:col-span-3">
                 <AppBarChartMixed />
             </div>
 

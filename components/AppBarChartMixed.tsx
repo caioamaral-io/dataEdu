@@ -108,8 +108,10 @@ export function ChartBarMixed() {
               dataKey="cor_raca"
               type="category"
               tickLine={false}
-              tickMargin={10}
+              tickMargin={8}
               axisLine={false}
+              interval={0}
+              tick={{ fontSize: 10 }}
               tickFormatter={(value) =>
                 chartConfig[value as keyof typeof chartConfig]?.label || value
               }
