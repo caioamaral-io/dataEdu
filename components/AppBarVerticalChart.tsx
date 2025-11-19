@@ -176,8 +176,11 @@ const AppBarVerticalChart = () => {
         </CardDescription>
       </CardHeader>
 
-      <CardContent>
-        <ChartContainer config={chartConfig} className="h-[260px]">
+      <CardContent className="flex justify-center items-center">
+        <ChartContainer
+          config={chartConfig}
+          className="h-[220px] sm:h-[260px] w-full"
+        >
 
           <BarChart
             accessibilityLayer

@@ -62,7 +62,10 @@ const AppBarChartActive = () => {
 				<CardDescription className="text-sm">2020 - 2023</CardDescription>
 			</CardHeader>
 			<CardContent className="flex justify-center items-center">
-				<ChartContainer config={chartConfig} className="h-[240px]">
+				<ChartContainer
+					config={chartConfig}
+					className="h-[220px] sm:h-[240px] w-full"
+				>
 					<BarChart
 						accessibilityLayer
 						data={chartData}
