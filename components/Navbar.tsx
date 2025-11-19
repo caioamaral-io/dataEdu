@@ -25,7 +25,7 @@ const lora = Lora({
 });
 
 const navigationLinks = [
-	{ href: "#", label: "Dashboard", icon: LayoutGrid  },
+	{ href: "https://dataedu.vercel.app", label: "Dashboard", icon: LayoutGrid  },
   { href: "https://github.com/caioamaral-io/Dashboard", label: "Github", icon: Github },
 	{ href: "#", label: "Documentation", icon: FileTextIcon },
   { href: "#", label: "Site", icon: LayersIcon },
