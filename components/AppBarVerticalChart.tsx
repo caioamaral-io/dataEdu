@@ -157,7 +157,7 @@ const AppBarVerticalChart = () => {
                   Humanas
                 </SelectItem>
                 <SelectItem className="text-xs" value="linguagens">
-                  Códigos
+                  Linguagens
                 </SelectItem>
                 <SelectItem className="text-xs" value="matematica">
                   Matemática
