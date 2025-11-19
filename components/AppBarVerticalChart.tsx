@@ -188,7 +188,10 @@ const AppBarVerticalChart = () => {
             layout="vertical"
             margin={{
               left: -15,
+              top: 8,
+              bottom: 8,
             }}
+            barCategoryGap="20%"
             onMouseMove={(state: any) => {
               if (state?.activeTooltipIndex != null) {
                 setActiveIndex(state.activeTooltipIndex as number)
@@ -200,8 +203,10 @@ const AppBarVerticalChart = () => {
               type="category"
               dataKey="faixa"
               tickLine={false}
-              tickMargin={10}
+              tickMargin={6}
               axisLine={false}
+              interval={0}
+              tick={{ fontSize: 10 }}
               tickFormatter={(value: string) => value}
             />
             <XAxis
