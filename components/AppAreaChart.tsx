@@ -82,7 +82,7 @@ const AppAreaChart = () => {
               </SelectContent>
             </Select>
           </div>
-          <CardDescription className="text-md">
+          <CardDescription className="text-sm">
             Públicas x Privadas
           </CardDescription>
         </div>

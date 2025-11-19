@@ -76,14 +76,14 @@ const AppBarChartInteractive = () => {
             {currentValue.toFixed(1)}%
           </span>
         </CardTitle>
-        <CardDescription className="text-md">
+        <CardDescription className="text-sm">
           Distribuição de participantes por faixa de renda (Q006)
         </CardDescription>
         <p className="text-md text-muted-foreground mt-1">
           Faixa selecionada: {currentLabel}
         </p>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex justify-center items-center">
         <AnimatePresence mode="wait">
           <ChartContainer config={chartConfig} className="h-[240px]">
             <BarChart

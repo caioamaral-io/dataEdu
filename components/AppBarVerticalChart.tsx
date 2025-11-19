@@ -169,7 +169,7 @@ const AppBarVerticalChart = () => {
             </SelectContent>
           </Select>
         </div>
-        <CardDescription className="text-md">
+        <CardDescription className="text-sm">
           {activeData
             ? `${activeData.faixa}: ${activeData.faixa_renda}`
             : "Notas médias por faixa de renda e disciplina do ENEM."}

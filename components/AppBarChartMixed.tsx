@@ -72,7 +72,7 @@ export function ChartBarMixed() {
         <CardTitle className="flex items-center gap-2">
           <span>Desempenho por Cor/Raça - ENEM PE</span>
         </CardTitle>
-        <CardDescription className="text-md">
+        <CardDescription className="text-sm">
           {activeData
             ? `${activeData.cor_raca}: ${activeData.nota_media.toFixed(1)}`
             : "Média de notas por cor/raça"}

@@ -93,7 +93,7 @@ const AppPieChart = () => {
         <CardTitle className="text-lg font-medium">
           Renda dos Alunos com Nota ≥ 713 (Pública)
         </CardTitle>
-        <p className="text-md text-muted-foreground mt-1">
+        <p className="text-sm text-muted-foreground mt-1">
           Faixa: {currentCategoria} - ({currentPercent.toFixed(1)}%)
         </p>
       </CardHeader>

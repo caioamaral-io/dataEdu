@@ -59,9 +59,9 @@ const AppBarChartActive = () => {
 						<span>+26,24%</span>
 					</span>
 				</CardTitle>
-				<CardDescription className="text-md">2020 - 2023</CardDescription>
+				<CardDescription className="text-sm">2020 - 2023</CardDescription>
 			</CardHeader>
-			<CardContent>
+			<CardContent className="flex justify-center items-center">
 				<ChartContainer config={chartConfig} className="h-[240px]">
 					<BarChart
 						accessibilityLayer

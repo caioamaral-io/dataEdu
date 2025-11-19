@@ -62,10 +62,10 @@ const AppBarChart = () => {
         <CardTitle className="flex items-center gap-2">
           <span>Escolas Públicas x Privadas</span>
         </CardTitle>
-        <CardDescription className="text-md">Desempenho médio no ENEM - Pernambuco</CardDescription>
+        <CardDescription className="text-sm">Desempenho médio no ENEM - Pernambuco</CardDescription>
       </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig} className="h-[260px]">
+      <CardContent className="flex justify-center items-center">
+        <ChartContainer config={chartConfig} className="h-[260px] w-full flex justify-center items-center">
           <BarChart
             accessibilityLayer
             data={chartData}
