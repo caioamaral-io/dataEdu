@@ -1,15 +1,15 @@
 import AppAreaChart from "@/components/AppAreaChart";
 import AppBarChart from "@/components/AppBarChart";
 import AppBarChartMixed from "@/components/AppBarChartMixed";
-import AppPieChart from "@/components/AppPieChart";
 import AppBarChartActive from "@/components/AppBarChartActive";
 import AppBarChartInteractive from "@/components/AppBarChartInteractive";
 import AppBarVerticalChart from "@/components/AppBarVerticalChart";
+import AppPizzaChart from "@/components/AppPizzaChart";
 
 const HomePage = () => {
     return (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4">
-            {/* Linha 1: dois cards grandes */}
+
             <div className="bg-grid p-3 lg:p-4 rounded-lg lg:col-span-6">
                 <AppBarChart />
             </div>
@@ -17,9 +17,8 @@ const HomePage = () => {
                 <AppBarChartActive />
             </div>
 
-            {/* Linha 2: card menor, card maior, card menor */}
             <div className="bg-grid p-3 lg:p-4 rounded-lg lg:col-span-3">
-                <AppPieChart />
+                <AppPizzaChart />
             </div>
             <div className="bg-grid p-3 lg:p-4 rounded-lg lg:col-span-6">
                 <AppAreaChart />
@@ -28,7 +27,6 @@ const HomePage = () => {
                 <AppBarChartMixed />
             </div>
 
-            {/* Linha 3: dois cards grandes */}
             <div className="bg-grid p-3 lg:p-4 rounded-lg lg:col-span-6">
                 <AppBarChartInteractive />
             </div>
