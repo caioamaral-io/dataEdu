@@ -41,7 +41,7 @@ const chartConfig = {
   },
   Privada: {
     label: "Privada",
-    color: "#2B7FFF",
+    color: "#1447E6",
   },
 } satisfies ChartConfig;
 

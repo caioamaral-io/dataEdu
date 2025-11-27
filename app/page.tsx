@@ -11,10 +11,10 @@ const HomePage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4">
 
             <div className="bg-grid p-3 lg:p-4 rounded-lg lg:col-span-6">
-                <AppBarChart />
+                <AppBarChartActive />
             </div>
             <div className="bg-grid p-3 lg:p-4 rounded-lg lg:col-span-6">
-                <AppBarChartActive />
+                <AppBarChart />
             </div>
 
             <div className="bg-grid p-3 lg:p-4 rounded-lg lg:col-span-3">

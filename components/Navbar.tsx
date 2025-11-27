@@ -38,7 +38,7 @@ const Navbar = () => {
 		<header className="border-b px-4 md:px-6">
 			<div className="flex h-14 items-center justify-between gap-4">
 				<div className="flex items-center">
-					<span className={`${lora.className} font-medium text-lg hidden md:block`}>Análise de Desempenho Enem PE</span>
+					<span className={`${lora.className} font-medium text-lg hidden md:block`}>Análise de Desempenho Enem PE - Públicas x Privadas</span>
 					<span className={`${lora.className} font-regular text-lg md:hidden`}>Dash Enem</span>
 				</div>
 				<div />
