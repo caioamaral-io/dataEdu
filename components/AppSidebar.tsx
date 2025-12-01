@@ -30,7 +30,7 @@ const items: NavItem[] = [
       { path: "https://sites.google.com/cesar.school/projetos-05-grupo-01/home", name: "Site" },
     ],
   },
-  { path: "/pitch", name: "Pitch", icon: Play }, 
+  { path: "https://edupitch.vercel.app", name: "Pitch", icon: Play }, 
 ];
 
 interface ChildItemProps {
