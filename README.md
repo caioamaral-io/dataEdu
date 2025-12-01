@@ -24,6 +24,7 @@ Estamos trabalhando na documentação para facilitar o início do uso do dataEdu
 - Next.js
 - React
 - TypeScript
+- Tailwind CSS
 - Shadcn
 - EvilCharts
 
