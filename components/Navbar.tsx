@@ -1,6 +1,6 @@
 "use client"
 
-import { FileTextIcon, LayoutGrid, LayersIcon, Github, Moon, Sun, Search } from "lucide-react"
+import { FileTextIcon, LayoutGrid, Github, Moon, Sun, Search } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Lora } from "next/font/google"
 import { useState } from "react"
@@ -25,7 +25,6 @@ const navigationLinks = [
   { href: "https://dataedu.vercel.app", label: "Dashboard", icon: LayoutGrid },
   { href: "https://github.com/caioamaral-io/Dashboard", label: "Github", icon: Github },
   { href: "https://docsedu.vercel.app", label: "Documentation", icon: FileTextIcon },
-  { href: "#", label: "Site", icon: LayersIcon },
 ]
 
 const charts = [

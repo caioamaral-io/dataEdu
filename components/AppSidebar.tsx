@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { LucideIcon } from "lucide-react";
-import { ChevronDown, LayoutGrid, CodeXml, Play } from "lucide-react";
+import { ChevronDown, LayoutGrid, CodeXml } from "lucide-react";
 
 type NavChild = {
   path: string;
@@ -12,25 +12,23 @@ type NavChild = {
 };
 
 type NavItem = {
-  path: string;
+  path?: string; 
   name: string;
   icon: LucideIcon;
   children?: NavChild[];
 };
 
 const items: NavItem[] = [
-  { path: "/", name: "Dash", icon: LayoutGrid},
+  { path: "/", name: "Dash", icon: LayoutGrid },
   {
-    path: "/developers",
-    name: "Developers",
-    icon: CodeXml, 
+    name: "Developers", 
+    icon: CodeXml,
     children: [
       { path: "https://docsedu.vercel.app", name: "Documentation" },
       { path: "https://github.com/caioamaral-io/Dashboard", name: "Open Source" },
       { path: "https://sites.google.com/cesar.school/projetos-05-grupo-01/home", name: "Site" },
     ],
   },
-  { path: "https://edupitch.vercel.app", name: "Pitch", icon: Play }, 
 ];
 
 interface ChildItemProps {
@@ -74,27 +72,33 @@ interface ItemProps {
   isActive: boolean;
   isExpanded: boolean;
   isItemExpanded: boolean;
-  onToggle: (path: string) => void;
+  onToggle: (key: string) => void;
   onSelect?: () => void;
 }
 
 const Item = ({ item, isActive, isExpanded, isItemExpanded, onToggle, onSelect }: ItemProps) => {
-  const pathname = usePathname();
   const Icon = item.icon;
   const hasChildren = item.children && item.children.length > 0;
   const shouldShowChildren = isExpanded && isItemExpanded;
 
+  const clickable = !!item.path; 
+
   const handleChevronClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    onToggle(item.path);
+    onToggle(item.name); 
   };
+
+  const Wrapper = clickable ? Link : "div";
+  const wrapperProps = clickable
+    ? { href: item.path!, onClick: () => onSelect?.() }
+    : { className: "cursor-default" };
 
   return (
     <div className="group">
-      <Link href={item.path} onClick={() => onSelect?.()} className="group">
+      <Wrapper {...(wrapperProps as any)}>
         <div className="relative">
-           <div
+          <div
             className={`border h-[40px] transition-colors duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] ml-[15px] mr-[15px] ${
               isActive ? "bg-accent/60 border-border/80" : "border-transparent hover:bg-accent/60 hover:border-border/80"
             } ${isExpanded ? "w-[calc(100%-30px)]" : "w-[40px]"}`}
@@ -113,6 +117,7 @@ const Item = ({ item, isActive, isExpanded, isItemExpanded, onToggle, onSelect }
               >
                 {item.name}
               </span>
+
               {hasChildren && (
                 <button
                   type="button"
@@ -127,24 +132,21 @@ const Item = ({ item, isActive, isExpanded, isItemExpanded, onToggle, onSelect }
             </div>
           )}
         </div>
-      </Link>
+      </Wrapper>
 
       {hasChildren && (
         <div className={`transition-all duration-300 ease-out overflow-hidden ${shouldShowChildren ? "max-h-96 mt-1" : "max-h-0"}`}>
-          {item.children!.map((child, index) => {
-            const isChildActive = pathname === child.path;
-            return (
-              <ChildItem
-                key={child.path}
-                child={child}
-                isActive={isChildActive}
-                isExpanded={isExpanded}
-                shouldShow={shouldShowChildren}
-                onSelect={onSelect}
-                index={index}
-              />
-            );
-          })}
+          {item.children!.map((child, index) => (
+            <ChildItem
+              key={child.path}
+              child={child}
+              isActive={usePathname() === child.path}
+              isExpanded={isExpanded}
+              shouldShow={shouldShowChildren}
+              onSelect={onSelect}
+              index={index}
+            />
+          ))}
         </div>
       )}
     </div>
@@ -158,7 +160,6 @@ interface MainMenuProps {
 
 const MainMenu = ({ onSelect, isExpanded }: MainMenuProps) => {
   const pathname = usePathname();
-  const part = pathname?.split("/")[1];
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
 
   useEffect(() => {
@@ -170,16 +171,16 @@ const MainMenu = ({ onSelect, isExpanded }: MainMenuProps) => {
       <nav className="w-full">
         <div className="flex flex-col gap-2">
           {items.map((item) => {
-            const isActive = (pathname === "/" && item.path === "/") || (pathname !== "/" && item.path.startsWith(`/${part}`));
+            const isActive = item.path ? pathname === item.path : false;
 
             return (
               <Item
-                key={item.path}
+                key={item.name}
                 item={item}
                 isActive={isActive}
                 isExpanded={isExpanded}
-                isItemExpanded={expandedItem === item.path}
-                onToggle={(path) => setExpandedItem(expandedItem === path ? null : path)}
+                isItemExpanded={expandedItem === item.name}
+                onToggle={(key) => setExpandedItem(expandedItem === key ? null : key)}
                 onSelect={onSelect}
               />
             );
@@ -206,31 +207,17 @@ const AppSidebar = () => {
           isExpanded ? "w-full" : "w-[69px]"
         }`}
       >
-        {/* Logo */}
         <div className="absolute left-0 w-[70px] h-[70px] flex items-center justify-center z-20">
           <Link href="/" className="transition-none">
-            {/* Logo Light Mode */}
-            <img
-              src="/logo-black.svg"
-              alt="Logo"
-              className="h-[35px] w-[35px] dark:hidden object-contain"
-            />
-
-            {/* Logo Dark Mode */}
-            <img
-              src="/logo-light.svg"
-              alt="Logo"
-              className="h-[30px] w-[30px] hidden dark:block object-contain"
-            />
+            <img src="/logo-black.svg" alt="Logo" className="h-[35px] w-[35px] dark:hidden object-contain" />
+            <img src="/logo-light.svg" alt="Logo" className="h-[30px] w-[30px] hidden dark:block object-contain" />
           </Link>
         </div>
       </div>
 
       {isExpanded && (
         <div className="absolute left-[65px] h-[70px] flex items-center">
-          <span className="text-lg font-regular tracking-tight">
-            dataEdu
-          </span>
+          <span className="text-lg font-regular tracking-tight">dataEdu</span>
         </div>
       )}
 
