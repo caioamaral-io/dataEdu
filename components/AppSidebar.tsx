@@ -25,7 +25,7 @@ const items: NavItem[] = [
     icon: CodeXml,
     children: [
       { path: "https://docsedu.vercel.app", name: "Documentation" },
-      { path: "https://nike.com", name: "Open Source" },
+      { path: "https://github.com/caioamaral-io/dataEdu", name: "Open Source" },
       { path: "https://sites.google.com/cesar.school/projetos-05-grupo-01/home", name: "Site" },
     ],
   },
